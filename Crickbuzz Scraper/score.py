@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+import csv
 
 player_template = {"pid":"0","name":"","team_name":"","out_by":"None","runs_scored":"-1","balls_faced":"0","fours":"0","sixes":"0","strike_rate":"0","overs":"0","maiden":"0","runs_given":"0","wickets":"0","no_balls":"0","wide_balls":"0","CROST":"0","extras":"0"}
 
@@ -39,12 +40,13 @@ def get_match(url):
   Inning1_batting = Inning1.find_all('div',class_="cb-col cb-col-100 cb-ltst-wgt-hdr")[0]
   Inning1_bowling = Inning1.find_all('div',class_="cb-col cb-col-100 cb-ltst-wgt-hdr")[1]
   Inning1_batting = Inning1_batting.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms")
-  Inning1_bowling = Inning1_bowling.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms ")
+  Inning1_bowling = Inning1_bowling.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms")
   Score = Inning1.find_all('span',class_="pull-right")
   score = Score[0].get_text()
   if '-' in score:
     score = score[:score.find('-')]
   team_name = Inning1.find('span').get_text()
+  
   if 'Innings' in team_name:
     team_name = team_name[:team_name.find(' Innings')]
   match['team1_name'] = team_name
@@ -53,9 +55,9 @@ def get_match(url):
 
 
   # Inning 1 Start
+
   Inning1_batting_info = []
   for b in Inning1_batting:
-    # pprint(b)
     batsman = {}
     name = b.find('a',class_="cb-text-link")
     if name:
@@ -79,7 +81,6 @@ def get_match(url):
     else:
       continue
 
-    # print all_other
     if len(batsman) > 0:
       Inning1_batting_info.append(batsman)
 
@@ -102,14 +103,13 @@ def get_match(url):
     if runs_given:
       bowler['runs_given'] = str(runs_given.get_text()).strip()
     all_others = b.find_all('div',class_="cb-col cb-col-8 text-right")
-    # print all_others
+
     if len(all_others)>0:
       bowler['overs'] = str(all_others[0].get_text()).strip()
       bowler['maiden'] = str(all_others[1].get_text()).strip()
       bowler['no_balls'] = str(all_others[2].get_text()).strip()
       bowler['wide_balls'] = str(all_others[3].get_text()).strip()
-      # bowler['economy'] = str(all_others[5].get_text()).strip()
-    # print bowler
+
     if len(bowler) > 0:
       Inning1_bowling_info.append(bowler)
 
@@ -122,7 +122,7 @@ def get_match(url):
   Inning2_batting = Inning2.find_all('div',class_="cb-col cb-col-100 cb-ltst-wgt-hdr")[0]
   Inning2_bowling = Inning2.find_all('div',class_="cb-col cb-col-100 cb-ltst-wgt-hdr")[1]
   Inning2_batting = Inning2_batting.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms")
-  Inning2_bowling = Inning2_bowling.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms ")
+  Inning2_bowling = Inning2_bowling.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms")
   Score = Inning2.find_all('span',class_="pull-right")
   score = Score[0].get_text()
   if '-' in score:
@@ -140,7 +140,6 @@ def get_match(url):
 
   Inning2_batting_info = []
   for b in Inning2_batting:
-    # pprint(b)
     batsman = {}
     name = b.find('a',class_="cb-text-link")
     if name:
@@ -164,7 +163,6 @@ def get_match(url):
     else:
       continue
 
-    # print all_other
     if len(batsman) > 0:
       Inning2_batting_info.append(batsman)
 
@@ -187,27 +185,22 @@ def get_match(url):
     if runs_given:
       bowler['runs_given'] = str(runs_given.get_text()).strip()
     all_others = b.find_all('div',class_="cb-col cb-col-8 text-right")
-    # print all_others
+
     if len(all_others)>0:
       bowler['overs'] = str(all_others[0].get_text()).strip()
       bowler['maiden'] = str(all_others[1].get_text()).strip()
       bowler['no_balls'] = str(all_others[2].get_text()).strip()
       bowler['wide_balls'] = str(all_others[3].get_text()).strip()
-      # bowler['economy'] = str(all_others[5].get_text()).strip()
-    # print bowler
+
     if len(bowler) > 0:
       Inning2_bowling_info.append(bowler)
 
-  # print match
-  # print json.dumps(matches,sort_keys=True,indent=4, separators=(',', ': '))
+
   players = {}
   Players = Soup.find_all('div',class_="cb-col cb-col-100 cb-minfo-tm-nm")
   Players1 = Players[1].find_all('a')
   Players2 = Players[3].find_all('a')
-  # for p in Players1:
-  #   print p
-  # for p in Players2:
-  #   print p
+
   for p in Players1:
     player = player_template.copy()
     pid = p['href'][10:]
@@ -220,10 +213,11 @@ def get_match(url):
     players[pid] = player
 
 
-  # print players
+
   for p in Inning1_batting_info:
     if p['pid'] in players:
       players[p['pid']]['name'] = p['name']
+      players[p['pid']]['team_name'] = match['team1_name']
       players[p['pid']]['balls_faced'] = p['balls']
       players[p['pid']]['fours'] = p['fours']
       players[p['pid']]['sixes'] = p['sixes']
@@ -236,6 +230,7 @@ def get_match(url):
   for p in Inning1_bowling_info:
     if p['pid'] in players:
       players[p['pid']]['name'] = p['name']
+      players[p['pid']]['team_name'] = match['team2_name']
       players[p['pid']]['maiden'] = p['maiden']
       players[p['pid']]['overs'] = p['overs']
       players[p['pid']]['no_balls'] = p['no_balls']
@@ -248,6 +243,7 @@ def get_match(url):
   for p in Inning2_batting_info:
     if p['pid'] in players:
       players[p['pid']]['name'] = p['name']
+      players[p['pid']]['team_name'] = match['team2_name']
       players[p['pid']]['balls_faced'] = p['balls']
       players[p['pid']]['fours'] = p['fours']
       players[p['pid']]['sixes'] = p['sixes']
@@ -260,6 +256,7 @@ def get_match(url):
   for p in Inning2_bowling_info:
     if p['pid'] in players:
       players[p['pid']]['name'] = p['name']
+      players[p['pid']]['team_name'] = match['team1_name']
       players[p['pid']]['maiden'] = p['maiden']
       players[p['pid']]['overs'] = p['overs']
       players[p['pid']]['no_balls'] = p['no_balls']
@@ -274,8 +271,40 @@ def get_match(url):
 
   with open('matches.json','w') as f:
     json.dump(matches,f)
+
+
+
+
+  # Open the JSON file and load the data
+  with open('matches.json', 'r') as f:
+    data = json.load(f)
+
+  # Open the CSV file and write the data
+  with open('match_data.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+
+    # Write the header row
+    writer.writerow(['match_name', 'url', 'match_country', 'venue', 'team1_name', 'team1_score', 'team2_name', 'team2_score', 'pid', 'name', 'team_name', 'out_by', 'runs_scored', 'balls_faced', 'fours', 'sixes', 'strike_rate', 'overs', 'maiden', 'runs_given', 'wickets', 'no_balls', 'wide_balls', 'CROST', 'extras'])
+
+    # Write each row of data
+    for match in data['match']:
+      match_name = match['match_name']
+      url = match['url']
+      match_country = match['match_country']
+      venue = match['venue']
+      team1_name = match['team1_name']
+      team1_score = match['team1_score']
+      team2_name = match['team2_name']
+      team2_score = match['team2_score']
+
+      for pid, player in match['players'].items():
+        row = [match_name, url, match_country, venue, team1_name, team1_score, team2_name, team2_score, pid, player['name'], player['team_name'], player['out_by'], player['runs_scored'], player['balls_faced'], player['fours'], player['sixes'], player['strike_rate'], player['overs'], player['maiden'], player['runs_given'], player['wickets'], player['no_balls'], player['wide_balls'], player['CROST'], player['extras']]
+        writer.writerow(row)
+
+
+
   return match
-# print json.dumps(matches,sort_keys=True,indent=4, separators=(',', ': '))
+
 
 
 
