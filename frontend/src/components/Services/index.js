@@ -32,7 +32,7 @@ const Services = () => {
           <div id="srilanka">Sri Lanka</div>
           </ServicesCard>
           <ServicesCard>
-          <div id="bangkok">Bangkok</div>
+          <div id="bangkok">Bangladesh</div>
           </ServicesCard>
           <ServicesCard>
           <div id="pakistan">Pakistan</div>

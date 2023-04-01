@@ -11,19 +11,22 @@
 .App .columnPlayers {
     padding: 2%;
     width: 30%;
-    background-color: #4d924d;
+    background-color: #01bf71;
+    border-radius:  5%;
 }
 
 .App .columnTeam-1{
     padding: 2%;
     width: 30%;
     background-color: #dff5df;
+    border-radius:  5%;
 }
 
 .App .columndone {
     padding: 2%;
     width: 30%;
-    background-color: #958d37;
+    background-color: #dff5df;
+    border-radius:  5%;
 }
 
 
