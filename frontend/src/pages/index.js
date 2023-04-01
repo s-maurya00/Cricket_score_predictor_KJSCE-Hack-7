@@ -1,8 +1,11 @@
 import React,{useState} from 'react'
 
+
 // import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import Services from '../components/Services';
+import Predict from '../components/Predict';
+
 // import Footer from '../components/footer';
 
 const Home = () => {
@@ -18,6 +21,7 @@ const Home = () => {
 {/* <Sidebar isOpen={isOpen} toggle={toggle}/> */}
 <Navbar toggle={toggle}/>
 <Services />
+<Predict/>
 {/* <Footer /> */}
     </>
   )
