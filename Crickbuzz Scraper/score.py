@@ -21,7 +21,7 @@ def get_match(url):
 
   # Checking if the match has already been fetched and stored in the matches variable
   for match in matches['match']:
-    if match_name == match['match_name']:
+    if (url[url.find('cricket-scorecard/')+18:] == match['url']):
       print("Match already exists...")
       return
 
