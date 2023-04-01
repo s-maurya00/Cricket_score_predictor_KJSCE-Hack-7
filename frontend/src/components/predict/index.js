@@ -113,25 +113,25 @@ function Predict() {
     })
   }
 
-  const addItem = () => {
-    setState(prev => {
-      return {
-        ...prev,
-        todo: { 
-          title: "Todo",
-          items: [
-            {
-              id: v4(),
-              name: text
-            },
-            ...prev.todo.items
-          ]
-        }
-      }
-    })
+  // const addItem = () => {
+  //   setState(prev => {
+  //     return {
+  //       ...prev,
+  //       todo: { 
+  //         title: "Todo",
+  //         items: [
+  //           {
+  //             id: v4(),
+  //             name: text
+  //           },
+  //           ...prev.todo.items
+  //         ]
+  //       }
+  //     }
+  //   })
 
-    setText("")
-  }
+  //   setText("")
+  // }
 
   return (
     <div className="App">
@@ -140,8 +140,8 @@ function Predict() {
           return(
         
             <div key={key} className={"column"+key}>
-                {console.log(key)}
-                {console.log(data)}
+                {/* {console.log(key)} */}
+                {/* {console.log(data)} */}
               <h3>{data.title}</h3>
               <Droppable droppableId={key}>
                 {(provided, snapshot) => {
