@@ -29,8 +29,11 @@ def get_match(url):
   match['match_name'] = match_name
   match['url'] = url[url.find('cricket-scorecard/')+18:]
 
+  # Store the country where the match is being played
+  match['match_country'] = url[(url.find('tour-of-') + len("tour-of-")): (url.find('tour-of-') + url.find('-'))]
 
-
+  # Stores the ground name where the match is held
+  match['venue'] = Soup.find('a', itemprop="location").get_text().replace("\u00a0", " ")
 
   Inning1 = Soup.find_all('div',id="innings_1")[0]
   Inning1_batting = Inning1.find_all('div',class_="cb-col cb-col-100 cb-ltst-wgt-hdr")[0]
@@ -50,7 +53,6 @@ def get_match(url):
 
 
   # Inning 1 Start
-
   Inning1_batting_info = []
   for b in Inning1_batting:
     # pprint(b)
