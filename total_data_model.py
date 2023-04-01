@@ -41,16 +41,37 @@ pdata['name'].value_counts()
 
 len(pdata['name'].unique())
 
-## Encoding categorical variables 
-from sklearn import preprocessing
-  
-# label_encoder object knows how to understand word labels.
-label_encoder = preprocessing.LabelEncoder()
+pdata['team1_name'].value_counts()/11
 
-xdata = pdata
-# Encode labels in column 'species'.
-xdata['country']= label_encoder.fit_transform(xdata['country'])
-  
-xdata['country'].unique()
-xdata
+country_names = pdata['country'].unique()
+country_names
+
+countries = {
+  "india": 1,
+  "bangladesh": 2,
+  "new-zealand": 3,
+  'west-indies': 4,
+  'england': 5,
+  'sri-lanka': 6,
+  'australia-20':7
+}
+encoded_data = pdata['country'].apply(lambda col: col.map(countries[col.name]))
+encoded_data
+
+cdata = pdata
+
+cdata = cdata.groupby(['name'])
+
+pdata.columns
+
+average_strike_rate = pdata.groupby(['name'])['strike_rate'].mean()
+average_strike_rate
+
+cdata.get_group('Virat Kohli')
+
+cdata.get_group('Virat Kohli')['strike_rate'].mean()
+
+
+
+
 
