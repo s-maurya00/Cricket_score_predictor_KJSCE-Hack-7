@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './Predict.css';
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
+import Dropdown from "./Dropdown";
 import _ from "lodash";
 import {v4} from "uuid";
 
@@ -138,8 +139,9 @@ function Predict() {
       <DragDropContext onDragEnd={handleDragEnd}>
         {_.map(state, (data, key) => {
           return(
-        
+            
             <div key={key} className={"column"+key}>
+              <Dropdown/>
                 {/* {console.log(key)} */}
                 {/* {console.log(data)} */}
               <h3>{data.title}</h3>
@@ -153,6 +155,7 @@ function Predict() {
                     >
                       {data.items.map((el, index) => {
                         return(
+                          
                           <Draggable key={el.id} index={index} draggableId={el.id}>
                             {(provided, snapshot) => {
                             //   console.log(snapshot)
