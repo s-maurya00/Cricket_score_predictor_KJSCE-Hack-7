@@ -2,7 +2,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+      <Router>
       <Routes>
         <Route path='/' element={<Home />} exact />
         <Route path='/analyze' element={<AnalyzePlayers />} exact />
@@ -13,3 +13,5 @@ function App() {
 }
 
 export default App;
+
+
