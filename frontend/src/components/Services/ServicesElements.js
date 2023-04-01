@@ -7,7 +7,7 @@ display : flex;
 flex-direction:column;
 justify-content : center;
 align-items : center;
-background :#99d472;
+// background :#99d472;
 
 @media screen and (max-width:768px){
     height:1100px;
@@ -19,10 +19,10 @@ background :#99d472;
 `
 
 export const ServicesWrapper = styled.div`
-max-width:1000px;
+width:auto;
 margin:0 auto;
 display : grid;
-grid-template-columns : 1fr 1fr 1fr;
+grid-template-columns : 1fr 1fr 1fr 1fr 1fr 1fr;
 align-items : center;
 grid-gap: 16px;
 padding: 0 30px;

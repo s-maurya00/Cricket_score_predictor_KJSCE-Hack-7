@@ -17,22 +17,25 @@ const Services = () => {
   return (
     <>
       <ServicesContainer id="services">
-        <ServicesH1>Our Services</ServicesH1>
+        <ServicesH1>Analyze Player Data</ServicesH1>
         <ServicesWrapper>
           <ServicesCard>
-            {/* <ServicesIcon src={Icon1} /> */}
-            <ServicesH2>STEP-BY-STEP BUILDER</ServicesH2>
-            <ServicesP>Easy to use builder.Make a perfect portfolio.</ServicesP>
+            <div id="england">England</div>
           </ServicesCard>
           <ServicesCard>
-            {/* <ServicesIcon src={Icon2} /> */}
-            <ServicesH2>ADD YOUR STRENGTHS</ServicesH2>
-            <ServicesP>Add you skills, projects and courses done.</ServicesP>
+          <div id="australia">Australia</div>
           </ServicesCard>
           <ServicesCard>
-            {/* <ServicesIcon src={Icon3} /> */}
-            <ServicesH2>DOWNLOAD PORTFOLIO</ServicesH2>
-            <ServicesP>Download portfolio in pdf format and share with others.</ServicesP>
+          <div id="newzealand">New Zealand</div>
+          </ServicesCard>
+          <ServicesCard>
+          <div id="srilanka">Sri Lanka</div>
+          </ServicesCard>
+          <ServicesCard>
+          <div id="bangkok">Bangkok</div>
+          </ServicesCard>
+          <ServicesCard>
+          <div id="pakistan">Pakistan</div>
           </ServicesCard>
         </ServicesWrapper>
       </ServicesContainer>
