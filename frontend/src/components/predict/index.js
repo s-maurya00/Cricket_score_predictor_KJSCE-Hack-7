@@ -7,66 +7,66 @@ import {v4} from "uuid";
 
 const item = {
   id: v4(),
-  name: "Clean the house",
+  name: "Virat Kohli",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244980/virat-kohli.jpg"
 }
 
 const item2 = {
   id: v4(),
-  name: "Wash the car",
+  name: "Rohit Sharma",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244982/rohit-sharma.jpg"
 }
 
 const item3 = {
   id: v4(),
-  name: "Clean the house",
+  name: "Shikhar Dhawan",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244980/virat-kohli.jpg"
 }
 
 const item4= {
   id: v4(),
-  name: "Wash the car",
+  name: "Shubman Gill",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244982/rohit-sharma.jpg"
 }
 
 const item5 = {
   id: v4(),
-  name: "Clean the house",
+  name: "Shreyas Iyer",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244980/virat-kohli.jpg"
 }
 
 const item6 = {
   id: v4(),
-  name: "Wash the car",
+  name: "Manish Pandey",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244982/rohit-sharma.jpg"
 }
 const item7 = {
   id: v4(),
-  name: "Clean the house",
+  name: "Ravindra Jadeja",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244980/virat-kohli.jpg"
 }
 
 const item8 = {
   id: v4(),
-  name: "Wash the car",
+  name: "Ajinkya Rahane",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244982/rohit-sharma.jpg"
 }
 
 const item9 = {
   id: v4(),
-  name: "Clean the house",
+  name: "Hardik Pandya",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244980/virat-kohli.jpg"
 }
 
 const item10 = {
   id: v4(),
-  name: "Wash the car",
+  name: "Ravichandran Ashwin",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244982/rohit-sharma.jpg"
 }
 
 const item11 = {
   id: v4(),
-  name: "Clean the house",
+  name: "Jasprit Bumrah",
   image: "https://www.cricbuzz.com/a/img/v1/75x75/i1/c244980/virat-kohli.jpg"
 }
 
@@ -113,26 +113,6 @@ function Predict() {
       return prev
     })
   }
-
-  // const addItem = () => {
-  //   setState(prev => {
-  //     return {
-  //       ...prev,
-  //       todo: { 
-  //         title: "Todo",
-  //         items: [
-  //           {
-  //             id: v4(),
-  //             name: text
-  //           },
-  //           ...prev.todo.items
-  //         ]
-  //       }
-  //     }
-  //   })
-
-  //   setText("")
-  // }
 
   return (
     <div className="App">
