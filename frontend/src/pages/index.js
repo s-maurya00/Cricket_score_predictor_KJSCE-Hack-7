@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 
-import Sidebar from '../components/Sidebar';
+// import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import Services from '../components/Services';
-import Footer from '../components/footer';
+// import Footer from '../components/footer';
 
 const Home = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,10 +15,10 @@ const Home = () => {
 
   return (
     <>
-<Sidebar isOpen={isOpen} toggle={toggle}/>
+{/* <Sidebar isOpen={isOpen} toggle={toggle}/> */}
 <Navbar toggle={toggle}/>
 <Services />
-<Footer />
+{/* <Footer /> */}
     </>
   )
 }
