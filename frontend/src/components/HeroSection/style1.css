@@ -1,0 +1,20 @@
+.imagefile {
+    opacity: 0.8;
+    position: relative;
+    text-align: center;
+}
+
+.paragraph {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    background: rgba(76, 175, 80, 0.5);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.paragraph p{
+    color: white;
+}
