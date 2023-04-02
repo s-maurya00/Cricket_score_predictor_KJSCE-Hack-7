@@ -5,3 +5,11 @@
 #sort{
     padding: 5px;
 }
+
+.main-div{
+    margin-bottom: 20px !important;
+}
+
+.optionslabel{
+    font-weight: bold;
+}

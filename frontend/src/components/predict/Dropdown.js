@@ -19,8 +19,8 @@ function Dropdown () {
 //   );
 
   return (
-    <div>
-      <label htmlFor="sort">Sort by Country:</label>
+    <div className="maindiv">
+      <label htmlFor="sort" className="optionslabel">&nbsp;&nbsp;Sort by Country: &nbsp;&nbsp;&nbsp;&nbsp;</label>
       <select id="sort" onChange={(event) => setData([...data].sort((a, b) => a.age - b.age))}>
         <option className="options">Choose the Country</option>
         <option className="options">India</option>
